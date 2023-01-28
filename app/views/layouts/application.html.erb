@@ -11,6 +11,13 @@
   </head>
 
   <body>
+    <div id="main-header">
+      <%= link_to "Collections", collections_path %>
+      <%= link_to "About", "/about" %>
+    </div>
     <%= yield %>
+    <div id="main-footer">
+      <div>© 2023</div>
+    </div>
   </body>
 </html>
