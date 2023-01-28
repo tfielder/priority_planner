@@ -6,9 +6,16 @@
   <% @items.each do |item| %>
     <%= render item %>
     <p>
-      <%= link_to "Show this item", item %>
+      <%= link_to "Show Collection", [@collection] %>
     </p>
+    <p>
+      <%= link_to 'Edit Item', edit_collection_item_path(@collection, item) %>
+    </p>
+    <p>
+      <%= link_to 'Remove Item', [@collection, item], method: :delete, data: { confirm: 'Are you sure?'} %>
+    </p>
+
   <% end %>
 </div>
 
-<%= link_to "New item", new_item_path %>
+<%= link_to "New item", new_collection_item_path(@collection) %>
