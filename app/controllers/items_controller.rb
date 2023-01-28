@@ -1,9 +1,10 @@
 class ItemsController < ApplicationController
+  before_action :get_collection
   before_action :set_item, only: %i[ show edit update destroy ]
 
   # GET /items or /items.json
   def index
-    @items = Item.all
+    @items = @collection.items
   end
 
   # GET /items/1 or /items/1.json
@@ -12,7 +13,7 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new
+    @item = @collection.items.build
   end
 
   # GET /items/1/edit
@@ -21,11 +22,11 @@ class ItemsController < ApplicationController
 
   # POST /items or /items.json
   def create
-    @item = Item.new(item_params)
+    @item = @collection.items.build(item_params)
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to item_url(@item), notice: "Item was successfully created." }
+        format.html { redirect_to collection_items_path(@collection), notice: "Item was successfully created." }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to item_url(@item), notice: "Item was successfully updated." }
+        format.html { redirect_to collection_item_path(@collection), notice: "Item was successfully updated." }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +53,7 @@ class ItemsController < ApplicationController
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to items_url, notice: "Item was successfully destroyed." }
+      format.html { redirect_to collection_items_path(@collection), notice: "Item was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -60,11 +61,15 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      @item = @collection.items.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:title, :description)
+      params.require(:item).permit(:title, :description, :collection_id)
+    end
+
+    def get_collection
+      @collection = Collection.find(params[:collection_id])
     end
 end
