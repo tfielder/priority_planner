@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'main#index'
+  get '/about', to: 'main#about'
   resources :collections
   resources :items
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
