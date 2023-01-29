@@ -1,5 +1,5 @@
 class CollectionsController < ApplicationController
-  before_action :set_collection, only: %i[ show edit update destroy ]
+  before_action :set_collection, only: %i[ show sort_collection edit update destroy ]
 
   # GET /collections or /collections.json
   def index
@@ -13,6 +13,10 @@ class CollectionsController < ApplicationController
   # GET /collections/new
   def new
     @collection = Collection.new
+  end
+
+  def sort_collection
+    @items = @collection.items
   end
 
   # GET /collections/1/edit

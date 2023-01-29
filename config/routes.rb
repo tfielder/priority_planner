@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   root 'main#index'
   get '/about', to: 'main#about'
-  
+  get 'collections/:id/sort-collection/', to: 'collections#sort_collection', as: :sort_collection
+
   resources :collections do
     resources :items
   end

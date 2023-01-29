@@ -1,0 +1,13 @@
+<h1>Collection Sorter</h1>
+
+<p id="instructions">You will be asked your preference on the items you have chosen for your collection. Ready to begin?</p>
+
+<div data-controller="sort">
+    <button type="button", id="continue-button", data-action="click->sort#startSort">Start sorting</button>
+</div>
+
+<div id="decision-box">
+</div>
+
+<%= content_tag :div, '', id: 'ruby_model', data: {collection_id: @collection.id, items: @items} do %>
+<% end %>

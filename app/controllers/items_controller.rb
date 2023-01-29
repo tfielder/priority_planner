@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 
   # GET /items or /items.json
   def index
-    @items = @collection.items
+    get_items
   end
 
   # GET /items/1 or /items/1.json
@@ -71,5 +71,9 @@ class ItemsController < ApplicationController
 
     def get_collection
       @collection = Collection.find(params[:collection_id])
+    end
+
+    def get_items
+      @items = @collection.items
     end
 end
