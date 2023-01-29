@@ -13,7 +13,12 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = @collection.items.build
+    if @collection.items.size < CollectionsHelper.max_items
+      @item = @collection.items.build
+    else
+      format.html { redirect_to collection_items_path(@collection), notice: "Limit of #{CollectionsHelper.max_items.to_s} per collection."}
+      format.json { render :show, status: :created, location: @item }
+    end
   end
 
   # GET /items/1/edit

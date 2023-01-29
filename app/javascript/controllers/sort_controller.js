@@ -40,50 +40,86 @@ export default class extends Controller {
         var decision = document.createElement("div")
         decision.classList.add("decision-container")
 
-        var button_1 = document.createElement("button")
+        var button1 = document.createElement("button")
 
         var text = document.createElement("p")
         text.innerHTML = "or"
         
-        var button_2 = document.createElement("button")
+        var button2 = document.createElement("button")
 
-        decision.appendChild(button_1)
+        decision.appendChild(button1)
         decision.appendChild(text)
-        decision.appendChild(button_2)
+        decision.appendChild(button2)
         decisionBox.appendChild(decision)
 
-        button_1.innerHTML = choice1.title
-        button_2.innerHTML = choice2.title
-        button_1.item = items[decisionSet[i][0]]
-        button_2.item = items[decisionSet[i][1]]
+        button1.innerHTML = choice1.title
+        button2.innerHTML = choice2.title
+        button1.item = choice1
+        button2.item = choice2
 
         var results = {}
 
         // Initialize results
         items.forEach((item) => {
-            results[item.id] = 0
+            results[item.title] = 0
         })
+
+        function orderResults () {
+            var entries = Object.entries(results)
+
+            entries.sort(function(a, b) {
+                return b[1] - a[1]
+            })
+
+            return entries
+        }
+
+        function calculateDecision () {
+
+            // Kick off confetti
+
+            // update instructions
+            document.getElementById("instructions").innerHTML = "Congratulations! These are your results."
+            
+            var finalResults = orderResults(results)
+
+            // display results
+            var finalResultsElement = document.getElementById("final-results")
+            finalResults.forEach((res, idx) => {
+                var resultDiv = document.createElement("div")
+                resultDiv.innerHTML = idx + 1 + " " + res[0]
+                resultDiv.classList.add("results-div")
+                finalResultsElement.appendChild(resultDiv)
+            })
+
+            // hide submit button
+            document.getElementById("submit-button").style.display = "none"
+        }
 
         function advanceDecision (e) {
             // record decision
-            results[e.currentTarget.item.id] += 1
+            results[e.currentTarget.item.title] += 1
 
             // update questions
             if (i < decisionSet.length - 1) {
                 i++
-                button_1.innerHTML = items[decisionSet[i][0]].title
-                button_2.innerHTML = items[decisionSet[i][1]].title
-                button_1.item = items[decisionSet[i][0]]
-                button_2.item = items[decisionSet[i][1]]
+                button1.innerHTML = items[decisionSet[i][0]].title
+                button2.innerHTML = items[decisionSet[i][1]].title
+                button1.item = items[decisionSet[i][0]]
+                button2.item = items[decisionSet[i][1]]
             }
             else {
                 document.getElementById("instructions").innerHTML = "Click Submit to Finish!"
                 decisionBox.style.display = "none"
-                console.log(results)
+                var submitButton = document.createElement("button")
+                submitButton.setAttribute("id", "submit-button")
+                submitButton.innerHTML = "Submit"
+                submitButton.addEventListener("click", calculateDecision)
+                document.getElementById("final-results").appendChild(submitButton)
             }
         }
 
-        button_1.addEventListener("click", advanceDecision)
-        button_2.addEventListener("click", advanceDecision)
+        button1.addEventListener("click", advanceDecision)
+        button2.addEventListener("click", advanceDecision)
     }
 }
