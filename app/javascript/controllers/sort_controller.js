@@ -78,7 +78,6 @@ export default class extends Controller {
         }
 
         function calculateDecision () {
-
             // Todo: Kick off confetti
 
             // update instructions
