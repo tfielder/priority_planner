@@ -1,16 +1,21 @@
-<p style="color: green"><%= notice %></p>
+<p style="color: green;"><%= notice %></p>
 
-<h1>Collections</h1>
+<div class="flexit-column">
+  <h1 class="flexit-center">Collections</h1>
 
-<%= link_to "Add a collection", new_collection_path %>
+  <div class="flexit-center">
+    <%= link_to "Add a collection", new_collection_path, class: "button" %>
+  </div>
 
-<div id="collections">
-  <% @collections.each do |collection| %>
-    <%= render collection %>
-    <p>
-      <%= link_to "View", collection %>
-    </p>
-  <% end %>
+  <div id="collections">
+    <% @collections.each do |collection| %>
+      <%= render collection %>
+      <div class="flexit-center">
+        <%= link_to "View", collection %>
+      </div>
+    <% end %>
+  </div>
+
 </div>
 
 

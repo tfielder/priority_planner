@@ -41,11 +41,14 @@ export default class extends Controller {
         decision.classList.add("decision-container")
 
         var button1 = document.createElement("button")
+        button1.classList.add("flexit-center")
 
         var text = document.createElement("p")
         text.innerHTML = "or"
-        
+        text.classList.add("flexit-center")
+
         var button2 = document.createElement("button")
+        button2.classList.add("flexit-center")
 
         decision.appendChild(button1)
         decision.appendChild(text)
@@ -76,7 +79,7 @@ export default class extends Controller {
 
         function calculateDecision () {
 
-            // Kick off confetti
+            // Todo: Kick off confetti
 
             // update instructions
             document.getElementById("instructions").innerHTML = "Congratulations! These are your results."
@@ -122,4 +125,6 @@ export default class extends Controller {
         button1.addEventListener("click", advanceDecision)
         button2.addEventListener("click", advanceDecision)
     }
+
+    //
 }

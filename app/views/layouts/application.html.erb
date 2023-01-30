@@ -12,12 +12,17 @@
 
   <body>
     <div id="main-header">
+      <%= link_to "Home", root_path %>
       <%= link_to "Collections", collections_path %>
       <%= link_to "About", "/about" %>
     </div>
-    <%= yield %>
+    <div id="main-content">
+      <%= yield %>
+    </div>
     <div id="main-footer">
-      <div>© 2023</div>
+      <div id="main-footer_text" class="flexit">
+        <p>© 2023</p><p class="blue">Priority</p><p>Planner</p>
+      </div>
     </div>
   </body>
 </html>

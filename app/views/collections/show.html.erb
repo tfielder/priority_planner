@@ -2,12 +2,19 @@
 
 <%= render @collection %>
 
-<div>
-  <%= link_to "Edit this collection", edit_collection_path(@collection) %> |
-  <%= link_to "Add Item", collection_items_path(@collection) %> |
-  <%= link_to "Back to collections", collections_path %>
-
-  <%= button_to "Destroy this collection", @collection, method: :delete %>
+<div class="flexit-center flexit-spaced">
+  <div class="option">
+    <%= link_to "Edit", edit_collection_path(@collection) %> |
+  </div>
+  <div class="option">
+    <%= link_to "Add Item", collection_items_path(@collection) %> |
+  </div>
+  <div class="option">
+    <%= link_to "Back to collections", collections_path %> |
+  </div>
+  <div class="option">
+    <%= button_to "Destroy", @collection, method: :delete, :class => "button-to-text" %>
+  </div>
 </div>
 
 <h2>Items</h2>
@@ -17,4 +24,6 @@
   </ul>
 <% end %>
 
-<%= link_to "Sort My Collection", sort_collection_path(@collection) %>
+<div class="flexit-center">
+  <%= link_to "Sort My Collection", sort_collection_path(@collection), class: "button" %>
+</div>
