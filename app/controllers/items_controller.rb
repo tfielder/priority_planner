@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 
   # GET /items or /items.json
   def index
-    @items = @collection.items
+    get_items
   end
 
   # GET /items/1 or /items/1.json
@@ -13,7 +13,12 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = @collection.items.build
+    if @collection.items.size < CollectionsHelper.max_items
+      @item = @collection.items.build
+    else
+      format.html { redirect_to collection_items_path(@collection), notice: "Limit of #{CollectionsHelper.max_items.to_s} per collection."}
+      format.json { render :show, status: :created, location: @item }
+    end
   end
 
   # GET /items/1/edit
@@ -71,5 +76,9 @@ class ItemsController < ApplicationController
 
     def get_collection
       @collection = Collection.find(params[:collection_id])
+    end
+
+    def get_items
+      @items = @collection.items
     end
 end

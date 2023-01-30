@@ -2,13 +2,15 @@
 
 <h1>Collections</h1>
 
+<%= link_to "Add a collection", new_collection_path %>
+
 <div id="collections">
   <% @collections.each do |collection| %>
     <%= render collection %>
     <p>
-      <%= link_to "Show this collection", collection %>
+      <%= link_to "View", collection %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "Add a collection", new_collection_path %>
+
