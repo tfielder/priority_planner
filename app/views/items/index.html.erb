@@ -1,23 +1,27 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Items</h1>
+<h1 class="flexit-center">Items</h1>
 
 <% if @items.size < CollectionsHelper.max_items %>
-  <%= link_to "New item", new_collection_item_path(@collection) %>
+  <div class="flexit-center">
+    <%= link_to "New item", new_collection_item_path(@collection), :class => "button" %>
+  </div>
 <% end %>
 
 <div id="items">
   <% @items.each do |item| %>
     <%= render item %>
-    <p>
-      <%= link_to "Show Collection", [@collection] %>
-    </p>
-    <p>
-      <%= link_to 'Edit Item', edit_collection_item_path(@collection, item) %>
-    </p>
-    <p>
-      <%= link_to 'Remove Item', [@collection, item], method: :delete, data: { confirm: 'Are you sure?'} %>
-    </p>
+    <div class="flexit-center">
+      <div class="option">
+        <%= link_to "Show Collection", [@collection] %>
+      </div>
+      <div class="option">
+        <%= link_to 'Edit Item', edit_collection_item_path(@collection, item) %>
+      </div>
+      <div class="option">
+        <%= link_to 'Remove Item', [@collection, item], method: :delete, data: { confirm: 'Are you sure?'} %>
+      </div>
+    </div>
 
   <% end %>
 </div>

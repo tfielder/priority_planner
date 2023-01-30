@@ -1,6 +1,6 @@
 <%= form_with(model: collection) do |form| %>
   <% if collection.errors.any? %>
-    <div style="color: red">
+    <div class="flexit-center" style="color: red">
       <h2><%= pluralize(collection.errors.count, "error") %> prohibited this collection from being saved:</h2>
 
       <ul>
@@ -15,7 +15,7 @@
     <%= form.label :title, style: "display: block" %>
     <%= form.text_field :title %>
   </div>
-
+  <br/>
   <div>
     <%= form.label :description, style: "display: block" %>
     <%= form.text_field :description %>
