@@ -21,7 +21,7 @@ class CollectionsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to collection_url(Collection.last)
-  end
+  end 
 
   test "should show collection" do
     get collection_url(@collection)
