@@ -1,5 +1,7 @@
 # README
 
+# View the live version at: https://priority-planner-ruby-8d4cc20ba124.herokuapp.com/
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
